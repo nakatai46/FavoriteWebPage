@@ -1,3 +1,20 @@
+<?php
+$url = "https://www.jma.go.jp/bosai/forecast/data/forecast/130000.json";
+
+$json = file_get_contents($url);
+$data = json_decode($json,true);
+
+$publisher = $data[0]['publishingOffice'];
+$publish_time = $data[0]['reportDatetime'];
+$area = $data[0]['timeSeries'][0]['areas'][0]['area']['name'];
+$today = $data[0]['timeSeries'][0]['areas'][0]['weathers'][0];
+$tomorrow = $data[0]['timeSeries'][0]['areas'][0]['weathers'][1];
+$dayAfterTomorrow = $data[0]['timeSeries'][0]['areas'][0]['weathers'][2];
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,7 +43,7 @@
         <div class="form">
             <form method="get" action="http://www.google.co.jp/search" target="_blank">
                 <img src="http://www.google.co.jp/favicon.ico" width="16">
-                <input type="text" name="q" maxlength="255" value="">
+                <input type="text" name="q" maxlength="255" value="" placeholder="検索">
                 <input type="hidden" name="ie" value="UTF-8">
                 <input type="hidden" name="oe" value="UTF-8">
                 <input type="hidden" name="hl" value="ja">
@@ -38,7 +55,7 @@
             <form action="http://ja.wikipedia.org/w/index.php" target="_blank">
                 <a href="https://ja.wikipedia.org/wiki/%E3%83%A1%E3%82%A4%E3%83%B3%E3%83%9A%E3%83%BC%E3%82%B8"><img
                         src="http://ja.wikipedia.org/favicon.ico" width="16"></a>
-                <input type="text" name="search">
+                <input type="text" name="search" placeholder="検索">
                 <input type="submit" name="fulltext" value="全文">
                 <input type="submit" name="go" value="単語">
             </form>
@@ -58,7 +75,7 @@
         <div class="form">
             <form method="get" action="https://play.google.com/store/search" target="_blank">
                 <img src="https://ssl.gstatic.com/android/market_images/web/favicon.ico" width="16">
-                <input name="q" type="text">&nbsp;
+                <input name="q" type="text" placeholder="検索">&nbsp;
                 <input name="submit" type="submit" value="検索">
             </form>
         </div>
@@ -71,7 +88,9 @@
         <input type="radio" name="tab_name" id="tab1" checked>
         <label class="tab_class" for="tab1">Main</label>
         <div class="content_class">
-            <a href="http://localhost:8080/phpmyadmin/index.php?route=/server/databases">phpmyadmin</a>
+            <a href="http://localhost:8080/phpmyadmin/index.php?route=/server/databases">
+                <h1>DB設定</h1>
+            </a>
         </div>
 
 
@@ -95,17 +114,22 @@
 
 
         <input type="radio" name="tab_name" id="tab4">
-        <label class="tab_class" for="tab4">タブ4</label>
+        <label class="tab_class" for="tab4">news(予定)</label>
         <div class="content_class">
-            <iframe class="tab" src="https://github.com/nakatai46/FavoriteWebPage" style="border:0;" allowfullscreen=""
-                loading="lazy"></iframe>
+                <h1>news</h1>
         </div>
 
 
         <input type="radio" name="tab_name" id="tab5">
-        <label class="tab_class" for="tab5">タブ5</label>
+        <label class="tab_class" for="tab5">天気</label>
         <div class="content_class">
-            <p>タブ5のコンテンツを表示します</p>
+                <p><?php echo "発表者 :". $publisher ?></p>
+                <p><?php echo "報告日時 :". $publish_time ?></p>
+                <p><?php echo "対象地域 :". $area ?></p>
+                <p><?php echo "今日の天気 :". $today ?></p>
+                <p><?php echo "明日の天気 :". $tomorrow ?></p>
+                <p><?php echo "明後日の天気 :". $dayAfterTomorrow ?></p>
+
         </div>
     </div>
 
