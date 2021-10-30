@@ -10,8 +10,10 @@
 **修正項目**
 - css
 - login画面
+- etc.
 
 **実装予定**
 - login機能(DB登録)
 - login前後で表示内容変更
 - news
+- etc.
