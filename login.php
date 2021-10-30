@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <!-- Bootstrap読み込み（スタイリングのため） -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 </head>
 

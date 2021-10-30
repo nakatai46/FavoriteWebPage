@@ -97,7 +97,8 @@ $dayAfterTomorrow = $data[0]['timeSeries'][0]['areas'][0]['weathers'][2];
         <input type="radio" name="tab_name" id="tab2">
         <label class="tab_class" for="tab2">YouTube</label>
         <div class="content_class">
-            <iframe class="tab" src="https://www.youtube.com/embed/5Vr1FODSgVA" title="YouTube video player"
+            
+            <iframe class="tab" src="https://www.youtube.com/embed/pC5mGB5enkw" title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen></iframe>
