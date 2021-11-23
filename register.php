@@ -1,10 +1,20 @@
- <!DOCTYPE HTML>
+<?php
+session_start();
+if( isset($_SESSION['user']) != "") {
+  // ログイン済みの場合はリダイレクト
+  header("Location: home.php");
+}
+// DBとの接続
+include_once 'dbconnect.php';
+?>
+
+<!DOCTYPE HTML>
 <html lang="ja">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PHPの会員登録機能</title>
+    <title>FavoritePage会員登録</title>
     <link rel="stylesheet" href="style.css">
 
     <!-- Bootstrap読み込み（スタイリングのため） -->
@@ -27,7 +37,27 @@
                 <input type="password" class="form-control" name="password" placeholder="パスワード" required />
             </div>
             <button type="submit" class="btn btn-default" name="signup">会員登録する</button>
-            <a href="login.php">ログインはこちら</a>
+            <?php // signupがPOSTされたときに下記を実行
+if(isset($_POST['signup'])) {
+
+  $username = $mysqli->real_escape_string($_POST['username']);
+  $email = $mysqli->real_escape_string($_POST['email']);
+  $password = $mysqli->real_escape_string($_POST['password']);
+  $password = password_hash($password, PASSWORD_DEFAULT);
+
+  // POSTされた情報をDBに格納する
+  $query = "INSERT INTO users(username,email,password) VALUES('$username','$email','$password')";
+
+  if($mysqli->query($query)) {  ?>
+            <div class="alert alert-success" role="alert">登録しました</div>
+            <?php } else { ?>
+            <div class="alert alert-danger" role="alert">エラーが発生しました。</div>
+            <?php
+  }
+}
+?>
+
+            <a href="index.php">ログインはこちら</a>
         </form>
 
     </div>
