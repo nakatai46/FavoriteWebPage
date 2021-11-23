@@ -1,6 +1,7 @@
 # よく使うWEBサイトの表示
 
 **実装済み**
+- login機能(DB登録)
 - Google検索
 - Wiki検索
 - YouTube検索
@@ -13,7 +14,6 @@
 - etc.
 
 **実装予定**
-- login機能(DB登録)
 - login前後で表示内容変更
 - news
 - etc.
